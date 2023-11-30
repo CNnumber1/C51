@@ -3,19 +3,17 @@
 void Delay(unsigned int xms)	//@12.000MHz
 {
 	unsigned char data i, j;
-	while(xms)
+	while(xms--)
 	{
+			
 		i = 2;
 		j = 239;
 		do
 		{
 			while (--j);
 		} while (--i);
-		xms--;
-	}
-	
+		}
 }
-
 
 void main()
 {
@@ -26,8 +24,11 @@ void main()
 			Delay(20);
 			while(P3_1==0);
 			Delay(20);
-			
-			P2_0 =~ P2_0;
+			//1111 1111
+			//P2++
+			//0000 0000
+			P2--;
+			//1111 1110
 		}
 	}
 }
